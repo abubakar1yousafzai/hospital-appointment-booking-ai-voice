@@ -1,7 +1,7 @@
 # AGENT.md — Alex Voice Agent
 
 ## What This Is
-Hospital appointment voice agent. Patients call → VAPI handles voice → hits FastAPI backend → SQLite. "Wayu" is the product name. Next.js frontend is a marketing/demo page with embedded voice widget.
+Hospital appointment voice agent. Patients call → VAPI handles voice → hits FastAPI backend → SQLite. "CityCare" is the product name. Next.js frontend is a marketing/demo page with embedded voice widget.
 
 ---
 
@@ -108,7 +108,7 @@ Backend has no required env vars (SQLite is local, no auth).
 **Moods** (CSS `data-mood` on `<html>`): `apothecary` | `midnight` | `clinical` | `bedside`  
 **Voice**: `VoiceWidget.tsx` — uses `@vapi-ai/web` SDK, connects to VAPI on mic press.
 
-Key components: `WayuContext.tsx` (persona/mood data), `WayuTweaksPanel.tsx` (dev switcher), `VoiceWidget.tsx` (VAPI integration).
+Key components: `CityCareContext.tsx` (persona/mood data), `CityCareTweaksPanel.tsx` (dev switcher), `VoiceWidget.tsx` (VAPI integration).
 
 ---
 
