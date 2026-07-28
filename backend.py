@@ -17,6 +17,7 @@ MSG_DOCTOR_NOT_FOUND = "Doctor not found"
 MSG_NO_APPOINTMENT = "No appointment found"
 MSG_CANCELLED = "Appointment cancelled"
 MSG_CLARIFY = "Multiple appointments found. Please clarify the time."
+MSG_SLOT_BOOKED = "This time slot is already booked for this doctor"
 
 # ---------------------------------------------------------------------------
 # App & middleware
