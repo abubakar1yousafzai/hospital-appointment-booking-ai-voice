@@ -160,6 +160,22 @@ def list_appointments(date: str, patient_name: Optional[str] = None, db: Session
     return [AppointmentResponse.model_validate(a) for a in query.all()]
 
 
+@app.get("/api/availability")
+def check_availability(doctor_id: int, date: str, time: str, db: Session = Depends(get_db)):
+    """Check if a specific time slot is available for a given doctor."""
+    existing = (
+        db.query(Appointment)
+        .filter(
+            Appointment.doctor_id == doctor_id,
+            Appointment.date == date,
+            Appointment.time == time,
+            Appointment.status == STATUS_CONFIRMED,
+        )
+        .first()
+    )
+    return {"available": existing is None, "doctor_id": doctor_id, "date": date, "time": time}
+
+
 @app.get("/api/doctors")
 def list_doctors(db: Session = Depends(get_db)):
     """Return all doctors with their id, name, and specialty."""
