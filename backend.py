@@ -92,6 +92,19 @@ def create_appointment(request: AppointmentRequest, db: Session = Depends(get_db
     if not doctor:
         raise HTTPException(status_code=404, detail={"message": MSG_DOCTOR_NOT_FOUND})
 
+    conflicting = (
+        db.query(Appointment)
+        .filter(
+            Appointment.doctor_id == request.doctor_id,
+            Appointment.date == request.date,
+            Appointment.time == request.time,
+            Appointment.status == STATUS_CONFIRMED,
+        )
+        .first()
+    )
+    if conflicting:
+        raise HTTPException(status_code=409, detail={"message": MSG_SLOT_BOOKED})
+
     appointment = Appointment(
         patient_name=request.patient_name,
         reason=request.reason,
